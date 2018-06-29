@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.support.v4.content.ContextCompat" />
+
+        <import type="com.amrat.databindingapp.utils.DateUtils" />
+
+        <variable
+            name="movie"
+            type="com.amrat.databindingapp.model.Movie" />
+
+        <variable
+            name="onClickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/movie_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:foreground="?selectableItemBackground"
+        android:onClick="@{onClickListener::onClick}"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="10dp"
+        app:contentPadding="8dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/movie_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@{ContextCompat.getDrawable(context,movie.thumbnail)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/movie_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:text="@{movie.name}"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_thumbnail" />
+
+            <TextView
+                android:id="@+id/movie_release_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="4sp"
+                android:text='@{DateUtils.formatDate(movie.release,"d MMMM, yyyy")}'
+                android:textAlignment="center"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_name" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>

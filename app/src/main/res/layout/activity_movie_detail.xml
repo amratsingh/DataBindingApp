@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.support.v4.content.ContextCompat" />
+
+        <import type="com.amrat.databindingapp.utils.DateUtils" />
+
+        <variable
+            name="movie"
+            type="com.amrat.databindingapp.model.Movie" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MovieDetailActivity">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/movie_thumbnail"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:src="@{ContextCompat.getDrawable(context,movie.thumbnail)}"
+                app:layout_constraintDimensionRatio="W,3:2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@mipmap/img_avengers" />
+
+            <TextView
+                android:id="@+id/movie_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text='@{@string/movie_detail_name(movie.name,DateUtils.formatDate(movie.release,"yyyy"))}'
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@+id/movie_thumbnail"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1"
+                tools:text="Avengers(2012)" />
+
+            <TextView
+                android:id="@+id/movie_release_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/release_date"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/movie_release_date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@+id/movie_thumbnail"
+                app:layout_constraintTop_toBottomOf="@+id/movie_name"
+                app:layout_constraintVertical_bias="1"
+                tools:text="@string/release_date" />
+
+            <TextView
+                android:id="@+id/movie_release_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:text='@{DateUtils.formatDate(movie.release,"dd MMMM, yyyy")}'
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/movie_description_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@+id/movie_thumbnail"
+                tools:text="22 Auguest 2012" />
+
+            <TextView
+                android:id="@+id/movie_description_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/description"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_thumbnail"
+                app:layout_constraintVertical_bias="0"
+                tools:text="@string/description" />
+
+            <TextView
+                android:id="@+id/movie_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:text="@{movie.description}"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_description_label"
+                app:layout_constraintVertical_bias="0"
+                tools:text="This is Description" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">DataBindingApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_add">Add</string>
+    <string name="action_change">Change</string>
+    <string name="movie_detail_name">%1$s(%2$s)</string>
+    <string name="release_date">Release Date</string>
+    <string name="description">Description</string>
+    <plurals name="number_of_items">
+        <item quantity="one">%d car</item>
+        <item quantity="other">%d cars</item>
+    </plurals>
+</resources>
